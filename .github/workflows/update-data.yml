@@ -1,0 +1,37 @@
+name: Update subsidy data
+
+# 毎日 JST 6:00（UTC 21:00）に自動実行。手動実行(Run workflow)も可能。
+on:
+  schedule:
+    - cron: '0 21 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # データ更新をコミット/プッシュするために必要
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch latest subsidy data
+        run: node fetch-data.js
+
+      - name: Commit and push if data changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/subsidies.json
+          if git diff --staged --quiet; then
+            echo "変更なし。コミットをスキップします。"
+          else
+            git commit -m "chore: 補助金データ自動更新 ($(date -u +%Y-%m-%d))"
+            git push
+            echo "データを更新してプッシュしました。"
+          fi

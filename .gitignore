@@ -1,0 +1,8 @@
+# 詳細エンリッチのローカルキャッシュ（再生成可能・コミット不要）
+data/detail-cache/
+data/*.log
+
+# OS/エディタ
+.DS_Store
+Thumbs.db
+node_modules/

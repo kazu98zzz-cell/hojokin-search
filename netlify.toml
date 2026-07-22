@@ -1,0 +1,5 @@
+# Netlify 設定 — GitHub連携時にこの設定で自動デプロイされる。
+# ビルドは不要（静的サイト）。public フォルダをそのまま公開する。
+[build]
+  publish = "public"
+  command = ""

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>補助金・助成金 検索（jGrants）</title>
+  <meta name="description" content="jGrants（デジタル庁）の補助金・助成金を地域・業種・金額・締切で絞り込み検索。無料・登録不要。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>補助金・助成金 検索</h1>
+    <p class="tagline">地域・業種・金額・締切で、募集中の補助金をまとめて絞り込み。</p>
+  </header>
+
+  <main>
+    <section class="filters" aria-label="検索条件">
+      <div class="field field-keyword">
+        <label for="f-keyword">キーワード</label>
+        <input id="f-keyword" type="search" placeholder="例: ものづくり / IT / 省エネ" autocomplete="off" />
+      </div>
+
+      <div class="field">
+        <label for="f-pref">地域（都道府県）</label>
+        <select id="f-pref"><option value="">すべて</option></select>
+      </div>
+
+      <div class="field">
+        <label for="f-industry">業種</label>
+        <select id="f-industry"><option value="">すべて</option></select>
+      </div>
+
+      <div class="field">
+        <label for="f-amount">補助上限額の下限</label>
+        <select id="f-amount">
+          <option value="0">指定なし</option>
+          <option value="1000000">100万円以上</option>
+          <option value="5000000">500万円以上</option>
+          <option value="10000000">1,000万円以上</option>
+          <option value="50000000">5,000万円以上</option>
+          <option value="100000000">1億円以上</option>
+        </select>
+      </div>
+
+      <div class="field field-check">
+        <label><input id="f-open" type="checkbox" checked /> 募集中のみ</label>
+        <button id="f-reset" type="button" class="reset">条件をリセット</button>
+      </div>
+    </section>
+
+    <section class="results-head">
+      <p id="count" class="count" aria-live="polite">読み込み中…</p>
+      <label class="sort">並び替え:
+        <select id="f-sort">
+          <option value="end-asc">締切が近い順</option>
+          <option value="amount-desc">上限額が高い順</option>
+          <option value="start-desc">新着（開始日）順</option>
+        </select>
+      </label>
+    </section>
+
+    <ul id="list" class="list"></ul>
+    <p id="empty" class="empty" hidden>条件に合う補助金は見つかりませんでした。キーワードを減らすか、「募集中のみ」を外してお試しください。</p>
+  </main>
+
+  <footer class="site-footer">
+    <p id="source" class="source"></p>
+    <p class="disclaimer">
+      本ツールはjGrantsのデータを加工して表示する非公式ツールです。最新・正確な情報は各補助金の
+      <strong>公式詳細ページ</strong>をご確認ください。
+    </p>
+  </footer>
+
+  <script src="filters.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

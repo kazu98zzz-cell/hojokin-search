@@ -1,0 +1,13 @@
+{
+  "name": "hojokin-search",
+  "version": "1.0.0",
+  "private": true,
+  "description": "補助金・助成金 検索ツール（jGrants公開API + 静的サイト / 依存ゼロ）",
+  "scripts": {
+    "fetch": "node fetch-data.js",
+    "fetch:dry": "node fetch-data.js --dry-run",
+    "test": "node --test tests/filters.test.js",
+    "serve": "node server.js"
+  },
+  "license": "MIT"
+}

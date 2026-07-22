@@ -1,0 +1,77 @@
+/* style.css — 依存ゼロ・軽量。ライト/ダーク両対応。 */
+:root {
+  --bg: #f5f7fa; --panel: #ffffff; --ink: #1a2230; --muted: #5b6b7f;
+  --line: #e2e8f0; --brand: #1665d8; --brand-ink: #0b4bb0; --accent: #0a7d54;
+  --badge-bg: #eef3fb; --tag-bg: #eef7f2; --shadow: 0 1px 3px rgba(20,30,50,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e141c; --panel: #161e28; --ink: #e7edf5; --muted: #9db0c6;
+    --line: #263241; --brand: #4f9bff; --brand-ink: #86b9ff; --accent: #4ec99a;
+    --badge-bg: #1d2937; --tag-bg: #16261f; --shadow: 0 1px 3px rgba(0,0,0,.4);
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+  line-height: 1.6;
+}
+.site-header {
+  background: linear-gradient(135deg, var(--brand), var(--brand-ink));
+  color: #fff; padding: 28px 20px; text-align: center;
+}
+.site-header h1 { margin: 0 0 6px; font-size: 1.6rem; }
+.tagline { margin: 0; opacity: .92; font-size: .95rem; }
+main { max-width: 960px; margin: 0 auto; padding: 20px 16px 40px; }
+
+.filters {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 12px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px; box-shadow: var(--shadow); margin-bottom: 16px;
+}
+.field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.field-keyword { grid-column: 1 / -1; }
+.field-check { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; }
+.field label { font-size: .8rem; color: var(--muted); font-weight: 600; }
+.field input[type=search], .field select {
+  padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--bg); color: var(--ink); font-size: .95rem; width: 100%;
+}
+.field-check label { flex-direction: row; color: var(--ink); font-size: .95rem; display: flex; align-items: center; gap: 6px; }
+.reset {
+  background: transparent; border: 1px solid var(--line); color: var(--muted);
+  padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: .85rem;
+}
+.reset:hover { color: var(--ink); border-color: var(--brand); }
+
+.results-head { display: flex; align-items: center; justify-content: space-between; margin: 8px 2px 14px; gap: 12px; flex-wrap: wrap; }
+.count { margin: 0; font-weight: 700; }
+.sort { font-size: .85rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.sort select { padding: 5px 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel); color: var(--ink); }
+
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px; box-shadow: var(--shadow);
+}
+.card-title { margin: 0 0 10px; font-size: 1.05rem; line-height: 1.45; }
+.card-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.badge { display: inline-flex; align-items: baseline; gap: 6px; background: var(--badge-bg); border-radius: 7px; padding: 4px 10px; font-size: .85rem; }
+.badge-k { color: var(--muted); font-size: .75rem; }
+.badge-v { font-weight: 700; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.tag { background: var(--tag-bg); color: var(--accent); border-radius: 999px; padding: 3px 11px; font-size: .78rem; font-weight: 600; }
+.card-link { display: inline-block; color: var(--brand); font-weight: 700; text-decoration: none; font-size: .92rem; }
+.card-link:hover { text-decoration: underline; }
+.more-note, .empty { color: var(--muted); text-align: center; padding: 20px; }
+.empty { background: var(--panel); border: 1px dashed var(--line); border-radius: 12px; }
+
+.site-footer { max-width: 960px; margin: 0 auto; padding: 20px 16px 40px; color: var(--muted); font-size: .82rem; }
+.source { margin: 0 0 6px; }
+.disclaimer { margin: 0; }
+
+@media (max-width: 640px) {
+  .filters { grid-template-columns: 1fr 1fr; }
+  .field-keyword, .field-check { grid-column: 1 / -1; }
+}
